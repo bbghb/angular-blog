@@ -1,0 +1,10 @@
+<div class="article-create">
+  <app-article-form class="article-create__form" [form]="form" [categories]="categories" (submitted)="create()"></app-article-form>
+  <div class="mt-3">
+    <app-spinner-button
+      [isLoading]="!!(isCreating$ | async)"
+      [isDisabled]="form.invalid || !!(isCreating$ | async)"
+      (clicked)="create()"
+    >Create</app-spinner-button>
+  </div>
+</div>

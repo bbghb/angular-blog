@@ -1,0 +1,23 @@
+<nav *ngIf="pagesCount > 1" class="paginator">
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="pagination.page === 1">
+      <a [routerLink]="link" [queryParams]="{page: pagination.page === 1 ? 1 : pagination.page - 1}"
+        class="page-link" tabindex="-1"
+      >Previous</a>
+    </li>
+
+    <li *ngFor="let page of pagesRange" class="page-item" [class.active]="page === pagination.page">
+      <a [routerLink]="link" [queryParams]="{page: page}"
+        class="page-link"
+        tabindex="-1"
+      >{{ page }}</a>
+    </li>
+
+    <li class="page-item" [class.disabled]="isNextDisabled">
+      <a [routerLink]="link" [queryParams]="{page: pagination.page === pagesCount ? pagesCount : pagination.page + 1}"
+        class="page-link"
+        tabindex="-1"
+      >Next</a>
+    </li>
+  </ul>
+</nav>

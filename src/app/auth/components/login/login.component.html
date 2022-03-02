@@ -1,0 +1,39 @@
+<div class="login row justify-content-center mt-3">
+  <form [formGroup]="form" (ngSubmit)="login()" class="login__form col-4">
+    <div class="mb-3">
+      <label for="email-input" class="form-label">Email</label>
+
+      <input type="text" class="form-control" formControlName="email"
+        [class.is-invalid]="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)"
+        [class.is-valid]="form.get('email')?.valid && (form.get('email')?.dirty || form.get('email')?.touched)"
+      />
+
+      <div *ngIf="form.get('email')?.hasError('required') && (form.get('email')?.dirty || form.get('email')?.touched)"
+        class="invalid-feedback"
+      >Email is required</div>
+
+      <div *ngIf="form.get('email')?.hasError('email') && (form.get('email')?.dirty || form.get('email')?.touched)"
+        class="invalid-feedback"
+      >Email must be a valid email</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="password-input" class="form-label">Password</label>
+
+      <input type="password" id="password-input" class="form-control" formControlName="password"
+        [class.is-invalid]="form.get('password')?.invalid && (form.get('password')?.dirty || form.get('password')?.touched)"
+        [class.is-valid]="form.get('password')?.valid && (form.get('password')?.dirty || form.get('password')?.touched)"
+      />
+
+      <div *ngIf="form.get('password')?.hasError('required') && (form.get('password')?.dirty || form.get('password')?.touched)"
+        class="invalid-feedback"
+      >Password is required.</div>
+
+      <div *ngIf="form.get('password')?.hasError('minlength') && (form.get('password')?.dirty || form.get('password')?.touched)"
+        class="invalid-feedback"
+      >Password must contain at least 5 characters.</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [class.disabled]="form.invalid">Login</button>
+  </form>
+</div>

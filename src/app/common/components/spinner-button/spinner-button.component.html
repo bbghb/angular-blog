@@ -1,0 +1,10 @@
+<button class="btn btn-primary" [class.disabled]="isDisabled" (click)="clicked.emit($event)">
+  <ng-container *ngIf="!isLoading; else spinner;">
+    <ng-content></ng-content>
+  </ng-container>
+
+  <ng-template #spinner>
+    <span class="spinner-border text-light spinner-border-sm" role="status" aria-hidden="true"></span>
+    <span class="visually-hidden">Loading...</span>
+  </ng-template>
+</button>

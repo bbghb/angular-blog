@@ -1,0 +1,8 @@
+<ng-container *ngIf="comments?.length">
+  <h2 class="mb-3">Comments({{ comments.length }})</h2>
+  <ul class="article-comments list-group list-group-flush">
+    <li *ngFor="let comment of comments" class="list-group-item px-0">
+      <app-article-comment [comment]="comment"></app-article-comment>
+    </li>
+  </ul>
+</ng-container>

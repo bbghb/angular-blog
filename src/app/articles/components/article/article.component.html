@@ -1,0 +1,26 @@
+<div *ngIf="article" class="article">
+  <h1 class="article__title mt-3">{{ article.title }}</h1>
+
+  <div class="article__category mt-3"><span class="badge bg-primary">{{ article.category?.name }}</span></div>
+
+  <div class="article__date mt-3">
+    <div *ngIf="article.createdAt === article.updatedAt" class="fw-light">Published: {{ article.createdAt | date }}</div>
+    <div *ngIf="article.createdAt !== article.updatedAt" class="fw-light">Edited: {{ article.updatedAt | date }}</div>
+  </div>
+
+  <ul class="article__actions list-group list-group-horizontal mt-3">
+    <li class="article__action article__action--edit list-group-item"><a class="text-decoration-none" routerLink="/articles/{{ article.id }}/edit">Edit</a></li>
+    <li class="article__action article__action--delete list-group-item text-danger app-cursor-pointer" (click)="delete()">
+      <ng-container *ngIf="!(isDeleting$ | async); else spinner">Delete</ng-container>
+      <ng-template #spinner>
+        <div class="spinner-border spinner-border-sm text-danger" role="status">
+          <span class="visually-hidden">Deleting...</span>
+        </div>
+      </ng-template>
+    </li>
+  </ul>
+
+  <p class="article__body fs-3 mt-3 mb-5">{{ article.body }}</p>
+
+  <app-article-comments [comments]="article?.comments || []"></app-article-comments>
+</div>

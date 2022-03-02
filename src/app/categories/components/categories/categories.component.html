@@ -1,0 +1,9 @@
+<div *ngIf="vm$ | async as vm" class="categories">
+  <ul class="categories__list list-group list-group-flush">
+    <li *ngFor="let category of vm.categories" class="categories__list-item list-group-item px-0">
+      <div class="category__title"><a class="link-primary text-decoration-none" routerLink="/categories/{{ category.id }}">{{ category.name }}</a></div>
+      <p class="category__description">{{ category.description }}</p>
+    </li>
+  </ul>
+  <app-paginator [pagination]="vm.pagination" link="/categories"></app-paginator>
+</div>

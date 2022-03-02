@@ -1,0 +1,4 @@
+<div *ngIf="vm$ | async as vm" class="articles">
+  <app-articles-list [articles]="vm.articles"></app-articles-list>
+  <app-paginator [pagination]="vm.pagination" [link]="'/articles'"></app-paginator>
+</div>

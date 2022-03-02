@@ -1,0 +1,10 @@
+<div class="article-edit">
+  <app-article-form class="article-edit__form" [form]="form" [categories]="categories" (submitted)="edit()"></app-article-form>
+  <div class="mt-3">
+    <app-spinner-button
+      [isLoading]="!!(isEditing$ | async)"
+      [isDisabled]="form.invalid || !!(isEditing$ | async)"
+      (clicked)="edit()"
+    >Edit</app-spinner-button>
+  </div>
+</div>

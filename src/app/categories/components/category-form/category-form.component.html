@@ -1,0 +1,30 @@
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()" class="category-form">
+  <div class="form-floating">
+    <input type="text" class="form-control category-form-input" placeholder="Enter category name"
+      formControlName="name"
+      appTrimInput
+      [class.is-invalid]="isInvalid('name')"
+      [class.is-valid]="isValid('name')"
+    />
+
+    <label for="name-input" class="form-label">Name</label>
+
+    <div *ngIf="hasError('name', 'required')" class="invalid-feedback">Name is required.</div>
+    <div *ngIf="hasError('name', 'maxlength')" class="invalid-feedback">Name can contain at most {{ nameMaxLength }} characters.</div>
+  </div>
+
+  <div class="form-floating mt-3">
+    <textarea id="description-input" class="form-control category-form-input category-form-input--description"
+      placeholder="Enter category description"
+      formControlName="description"
+      appTrimInput
+      [class.is-invalid]="isInvalid('description')"
+      [class.is-valid]="isValid('description')"
+    ></textarea>
+
+    <label for="description-input">Description</label>
+
+    <div *ngIf="hasError('description', 'required')" class="invalid-feedback">Description is required.</div>
+    <div *ngIf="hasError('description', 'maxlength')" class="invalid-feedback">Description can contain at most {{ descriptionMaxLength }} characters.</div>
+  </div>
+</form>

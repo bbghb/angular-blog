@@ -1,0 +1,5 @@
+<div *ngIf="comment" class="article-comment">
+  <div class="article-comment__title fw-bold">{{ comment.title }}</div>
+  <div class="article-comment__description mt-2">{{ comment.description }}</div>
+  <div class="article-comment__date mt-2 fw-light">{{ comment.createdAt | date: 'medium' }}</div>
+</div>

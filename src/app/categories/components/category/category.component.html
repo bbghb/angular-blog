@@ -1,0 +1,17 @@
+<div *ngIf="category" class="category">
+  <h1 class="category__title">{{ category.name }}</h1>
+  <p class="category__description">{{ category.description }}</p>
+  <ul class="category__actions list-group list-group-horizontal mt-4">
+    <li class="category__action category__action--edit list-group-item"><a class="text-decoration-none" routerLink="/categories/{{ category.id }}/edit">Edit</a></li>
+    <li class="category__action category__action--delete list-group-item text-danger app-cursor-pointer"
+      (click)="delete()"
+    >
+      <ng-container *ngIf="!(isDeleting$ | async); else spinner">Delete</ng-container>
+      <ng-template #spinner>
+        <div class="spinner-border spinner-border-sm text-danger" role="status">
+          <span class="visually-hidden">Deleting...</span>
+        </div>
+      </ng-template>
+    </li>
+  </ul>
+</div>

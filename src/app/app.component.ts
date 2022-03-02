@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-blog';
+  isLoggedIn$: Observable<boolean>;
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.isLoggedIn$ = this.authService.isLoggedIn$;
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/']);
+  }
 }

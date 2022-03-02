@@ -1,0 +1,44 @@
+<form *ngIf="form" [formGroup]="form" (ngSubmit)="onSubmit()" class="article-form">
+  <div class="form-floating">
+    <input type="text" class="form-control article-form-input" placeholder="Enter article title"
+      formControlName="title"
+      appTrimInput
+      [class.is-invalid]="isInvalid('title')"
+      [class.is-valid]="isValid('title')"
+    />
+
+    <label for="name-input" class="form-label">Ttile</label>
+
+    <div *ngIf="hasError('title', 'required')" class="invalid-feedback">Title is required.</div>
+    <div *ngIf="hasError('title', 'maxlength')" class="invalid-feedback">Title can contain at most {{ titleMaxLength }} characters.</div>
+  </div>
+
+  <div class="form-floating mt-3">
+    <select id="article-form-category-input" class="form-select" formControlName="categoryId"
+      [class.is-invalid]="isInvalid('categoryId')"
+      [class.is-valid]="isValid('categoryId')"
+    >
+      <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+    </select>
+
+    <label for="article-form-category-input">Category</label>
+
+    <div *ngIf="hasError('categoryId', 'required')" class="invalid-feedback">Category is required.</div>
+  </div>
+
+  <div class="form-floating mt-3">
+    <textarea id="body-input" class="form-control article-form-input article-form-input--body"
+      placeholder="Enter article content"
+      formControlName="body"
+      appTrimInput
+      [class.is-invalid]="isInvalid('body')"
+      [class.is-valid]="isValid('body')"
+    ></textarea>
+
+    <label for="body-input">Content</label>
+
+    <div *ngIf="hasError('body', 'required')" class="invalid-feedback">Content is required.</div>
+    <div *ngIf="hasError('body', 'maxlength')" class="invalid-feedback">Content can contain at most {{ bodyMaxLength }} characters.</div>
+  </div>
+</form>
+
